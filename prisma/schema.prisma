@@ -1,0 +1,66 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  PATIENT
+  PROFESSIONAL
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  patient   PatientProfile?
+  pro       ProfessionalProfile?
+}
+
+model PatientProfile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  name      String?
+  city      String?
+  country   String?
+  goals     String?
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model ProfessionalProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  name        String?
+  category    String
+  city        String?
+  country     String?
+  lat         Float?
+  lng         Float?
+  languages   String?
+  specialties String?
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  fromId    String
+  toId      String
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  patientId String
+  proId     String
+  startsAt  DateTime
+  status    String
+  createdAt DateTime @default(now())
+}

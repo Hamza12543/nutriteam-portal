@@ -1,0 +1,67 @@
+.section {
+  padding: 56px 0;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,0.10), transparent 60%),
+              radial-gradient(900px 500px at 90% -20%, rgba(34,197,94,0.08), transparent 55%),
+              linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  border-top: 1px solid #eef2f7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.card {
+  border: 1px solid #eef2f7;
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(16, 24, 40, 0.10);
+}
+
+.mediaWrap { aspect-ratio: 16/9; background: #f1f5f9; }
+.media { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.body { padding: 18px 18px 22px; }
+.headingRow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.title { font-size: 20px; font-weight: 800; color: #0f172a; }
+.desc { color: #475569; margin-bottom: 10px; }
+
+.icon { width: 28px; height: 28px; display: inline-grid; place-items: center; border-radius: 6px; font-size: 16px; }
+.iconMobile { background: #e6f9ee; color: #047857; border: 1px solid #a7f3d0; }
+.iconWeb { background: #e6f0ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+
+.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; color: #334155; }
+.list li { display: flex; gap: 8px; align-items: center; }
+
+.check { width: 18px; height: 18px; display: inline-grid; place-items: center; border-radius: 50%; font-size: 12px; line-height: 1; }
+.checkGreen { background: #ecfdf5; color: #10b981; border: 1px solid #a7f3d0; }
+.checkBlue  { background: #eff6ff; color: var(--brand-primary); border: 1px solid var(--brand-primary); }
+
+/* Store badges row under the Mobile card */
+.storeBadges { display: flex; gap: 10px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+.badge { display: inline-flex; align-items: center; }
+.badgeImg { display: block; height: auto; width: auto; max-width: 100%; }
+/* Force consistent visual height for both badges */
+.badgeApple .badgeImg, .badgeGoogle .badgeImg { height: 40px; }
+
+/* Web app primary action */
+.actions { margin-top: 12px; }
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand-primary);
+  color: #fff;
+  border: 1px solid var(--brand-primary);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.primaryBtn:hover { background: #1e40af; }
+
+@media (max-width: 960px) {
+  .grid { grid-template-columns: 1fr; }
+}

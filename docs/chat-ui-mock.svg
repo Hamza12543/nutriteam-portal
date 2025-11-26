@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="900" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg { fill: #f8fafc; }
+    .card { fill: #ffffff; stroke: #e5e7eb; }
+    .header { fill: rgba(255,255,255,0.9); stroke: #e5e7eb; }
+    .brand { fill: #2563eb; }
+    .accent { fill: #f59e0b; }
+    .muted { fill: #e5e7eb; }
+    .mutedText { fill: #6b7280; font: 500 14px Arial; }
+    .text { fill: #111827; font: 600 16px Arial; }
+    .small { fill: #111827; font: 500 13px Arial; }
+    .title { fill: #111827; font: 700 18px Arial; }
+    .h1 { fill: #111827; font: 700 22px Arial; }
+    .badge { fill: #f59e0b; }
+    .bubbleIn { fill: #2563eb; }
+    .bubbleOut { fill: #eef2ff; }
+    .bubbleTextLight { fill: #ffffff; font: 500 14px Arial; }
+    .bubbleTextDark { fill: #1f2937; font: 500 14px Arial; }
+    .input { fill: #ffffff; stroke: #e5e7eb; }
+    .btn { fill: #2563eb; }
+    .btnText { fill: #ffffff; font: 600 14px Arial; }
+    .link { fill: #2563eb; font: 600 14px Arial; }
+  </style>
+
+  <!-- Page Title -->
+  <text x="30" y="40" class="h1">NutriTeam Chat - UI Mock</text>
+  <text x="30" y="65" class="mutedText">Left: Conversations list. Right: Conversation thread with composer.</text>
+
+  <!-- Conversations List Panel -->
+  <g transform="translate(20,90)">
+    <rect x="0" y="0" width="600" height="780" rx="14" class="card"/>
+    <!-- Header -->
+    <rect x="0" y="0" width="600" height="64" class="header"/>
+    <text x="20" y="40" class="title">Messages</text>
+    <rect x="520" y="18" width="60" height="28" rx="6" class="btn"/>
+    <text x="535" y="37" class="btnText">New</text>
+
+    <!-- Search -->
+    <rect x="20" y="84" width="560" height="38" rx="8" class="input"/>
+    <text x="36" y="108" class="mutedText">Search professionals or patients</text>
+
+    <!-- Conversation items -->
+    <!-- Item 1 -->
+    <g transform="translate(20,140)">
+      <rect x="0" y="0" width="560" height="74" rx="10" class="muted" fill-opacity="0.4"/>
+      <circle cx="36" cy="37" r="22" class="brand"/>
+      <text x="70" y="34" class="text">Dr. Anna Keller</text>
+      <text x="70" y="56" class="mutedText">Latest: Please share your latest labs…</text>
+      <text x="480" y="34" class="small" fill="#6b7280">10:24</text>
+      <circle cx="540" cy="52" r="10" class="badge"/>
+      <text x="536" y="56" class="btnText" font-size="12">2</text>
+    </g>
+    <!-- Item 2 -->
+    <g transform="translate(20,222)">
+      <rect x="0" y="0" width="560" height="74" rx="10" class="card"/>
+      <circle cx="36" cy="37" r="22" class="accent"/>
+      <text x="70" y="34" class="text">John Martin</text>
+      <text x="70" y="56" class="mutedText">Thanks doctor! See you next week.</text>
+      <text x="480" y="34" class="small" fill="#6b7280">Yesterday</text>
+    </g>
+    <!-- Item 3 -->
+    <g transform="translate(20,304)">
+      <rect x="0" y="0" width="560" height="74" rx="10" class="card"/>
+      <circle cx="36" cy="37" r="22" class="brand"/>
+      <text x="70" y="34" class="text">Dietician Groupe</text>
+      <text x="70" y="56" class="mutedText">We recommend a 2,100 kcal plan…</text>
+      <text x="470" y="34" class="small" fill="#6b7280">Mon</text>
+    </g>
+
+    <!-- Footer hint -->
+    <text x="20" y="754" class="mutedText">Tap an item to open the chat. New conversation via profile “Contact”.</text>
+  </g>
+
+  <!-- Conversation Thread Panel -->
+  <g transform="translate(660,90)">
+    <rect x="0" y="0" width="720" height="780" rx="14" class="card"/>
+    <!-- Header -->
+    <rect x="0" y="0" width="720" height="64" class="header"/>
+    <circle cx="32" cy="32" r="10" class="muted"/>
+    <circle cx="72" cy="32" r="18" class="brand"/>
+    <text x="104" y="28" class="title">Dr. Anna Keller</text>
+    <text x="104" y="48" class="mutedText">Cardiology • Zurich, CH</text>
+
+    <!-- Chat area background -->
+    <rect x="0" y="64" width="720" height="612" class="bg"/>
+
+    <!-- Bubbles -->
+    <!-- Incoming -->
+    <g transform="translate(20,88)">
+      <rect x="0" y="0" width="360" height="54" rx="12" class="bubbleIn"/>
+      <text x="16" y="22" class="bubbleTextLight">Hello! How are you feeling today?</text>
+      <text x="16" y="42" class="bubbleTextLight">Any chest discomfort?</text>
+    </g>
+    <!-- Outgoing -->
+    <g transform="translate(340,160)">
+      <rect x="80" y="0" width="280" height="40" rx="12" class="bubbleOut"/>
+      <text x="96" y="25" class="bubbleTextDark">Feeling better, minor discomfort.</text>
+    </g>
+    <!-- Incoming -->
+    <g transform="translate(20,212)">
+      <rect x="0" y="0" width="420" height="40" rx="12" class="bubbleIn"/>
+      <text x="16" y="25" class="bubbleTextLight">Great. Please continue medication.</text>
+    </g>
+    <!-- Outgoing long -->
+    <g transform="translate(240,264)">
+      <rect x="120" y="0" width="360" height="64" rx="12" class="bubbleOut"/>
+      <text x="136" y="22" class="bubbleTextDark">Noted. Can we schedule a follow-up</text>
+      <text x="136" y="42" class="bubbleTextDark">on Friday 2pm?</text>
+    </g>
+
+    <!-- Timestamp divider -->
+    <text x="330" y="362" class="mutedText">Today</text>
+
+    <!-- More bubbles -->
+    <g transform="translate(20,388)">
+      <rect x="0" y="0" width="300" height="40" rx="12" class="bubbleIn"/>
+      <text x="16" y="25" class="bubbleTextLight">Friday 2pm works.</text>
+    </g>
+    <g transform="translate(420,440)">
+      <rect x="0" y="0" width="240" height="40" rx="12" class="bubbleOut"/>
+      <text x="16" y="25" class="bubbleTextDark">Thanks!</text>
+    </g>
+
+    <!-- Composer -->
+    <rect x="0" y="676" width="720" height="104" class="header"/>
+    <rect x="20" y="690" width="560" height="40" rx="8" class="input"/>
+    <text x="36" y="715" class="mutedText">Message Dr. Keller…</text>
+    <rect x="590" y="690" width="110" height="40" rx="8" class="btn"/>
+    <text x="626" y="715" class="btnText">Send</text>
+
+    <!-- Quick actions -->
+    <rect x="20" y="736" width="90" height="28" rx="6" class="muted"/>
+    <text x="34" y="755" class="small">Attach</text>
+    <rect x="116" y="736" width="120" height="28" rx="6" class="muted"/>
+    <text x="132" y="755" class="small">Schedule</text>
+  </g>
+
+  <!-- Mobile preview (small) -->
+  <g transform="translate(30,720)">
+    <rect x="0" y="0" width="260" height="160" rx="18" class="card"/>
+    <rect x="0" y="0" width="260" height="34" class="header"/>
+    <rect x="10" y="44" width="240" height="20" rx="6" class="muted"/>
+    <rect x="10" y="72" width="140" height="20" rx="10" class="bubbleIn"/>
+    <rect x="110" y="100" width="140" height="20" rx="10" class="bubbleOut"/>
+  </g>
+</svg>

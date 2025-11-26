@@ -1,0 +1,103 @@
+.navbar {
+    padding: 1.5rem 1rem !important;
+}
+// .navbarNav {
+//     padding: 1.5rem 1rem !important;
+// }
+.active {
+  color: #f59e0b !important;
+}
+.btn-link {
+  text-decoration: none;
+}
+.langBtn {
+  text-decoration: none !important;
+  color: #000000a6 !important;
+}
+
+.langActive {
+  color: #f59e0b !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+}
+
+.header {
+  background: #1a3129;
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  z-index: 1030; /* above content */
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #f59e0b !important;
+  }
+}
+.navbarNav li a {
+  color: #fff !important;
+}
+.haBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #1a3129 !important;
+  text-decoration: none !important;
+  background: #cbea7b;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.18);
+  color: #1a3129 !important;
+  border: 0;
+  font-weight: 600;
+}
+.haBtn:hover { box-shadow: 0 8px 22px rgba(15,23,42,0.24); transform: translateY(-1px); }
+.haBtn:active { transform: translateY(0); }
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 6px 16px rgba(15,23,42,0.18);
+  font-weight: 600;
+}
+.navBtn:hover { background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+.navBtn:active { transform: translateY(0); }
+
+/* User dropdown menu */
+.userMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(2,6,23,0.08);
+  border-radius: 10px;
+  min-width: 200px;
+  padding: 6px;
+  z-index: 1050;
+}
+.userMenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: inherit;
+  font-weight: 600;
+}
+.userMenuItem:hover {
+  background: #f1f5f9;
+}
+.userMenuDivider {
+  height: 1px;
+  background: rgba(2,6,23,0.08);
+  margin: 4px 6px;
+  border-radius: 1px;
+}

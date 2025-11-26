@@ -1,0 +1,43 @@
+.mission {
+  padding: 56px 0 72px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--brand-primary);
+  margin-bottom: 8px;
+}
+
+.underline {
+  width: 56px;
+  height: 4px;
+  background: var(--brand-accent);
+  border-radius: 999px;
+  margin: 8px 0 16px;
+}
+
+.lead {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand-accent);
+  color: #111;
+  border: 1px solid var(--brand-accent);
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.visual {
+  width: 100%;
+  height: 260px;
+  border-radius: 12px;
+  background: radial-gradient(120% 120% at 20% 20%, var(--brand-muted), transparent),
+              linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(245, 158, 11, 0.15));
+  border: 1px solid #e6e6e6;
+}

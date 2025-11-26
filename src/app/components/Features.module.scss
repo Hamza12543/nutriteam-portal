@@ -1,0 +1,118 @@
+.features {
+  max-width: 1100px;
+  margin: 48px auto 96px;
+  padding: 50px 24px 0;
+}
+
+.featuresHeader {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.featuresHeader h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--brand-primary);
+  margin-bottom: 8px;
+}
+
+.featuresHeader p {
+  color: var(--text-secondary);
+  margin-bottom: 100px;
+}
+
+.accent { 
+  background: linear-gradient(90deg, #111 0%, #666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.featureCard {
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+  background-color: #ffffff;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
+  padding: 40px 24px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.04);
+  z-index: 0;
+  /* reveal animation */
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  animation: feature-rise .55s ease-out forwards;
+}
+.featureCardHeading {
+  color: var(--brand-primary);
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  border-color: #cbea7b !important;
+  background: #cbea7b;
+  box-shadow: 0 10px 28px rgba(25,119,204,0.25);
+}
+
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: #cbea7b;
+  color: #cbea7b;
+  margin-bottom: 16px;
+  transition: transform .18s ease;
+  svg {
+    width: 32px;
+    height: 32px;
+    path, rect, circle { color: #fff }
+  }
+}
+
+.featureCard p {
+  color: #6b7280;
+}
+
+.featureCard:hover .featureCardHeading { color: #ffffff; }
+.featureCard:hover p { color: rgba(255,255,255,0.9); }
+.featureCard:hover .featureIcon { background: #ffffff; svg {
+  path, rect, circle { color: #cbea7b }
+} }
+.featureCard:hover .featureIcon { transform: scale(1.06); }
+
+.featureIconCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e6e6e6;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .featuresGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stagger timing for the 6 cards using nth-child on Bootstrap cols */
+.row > div:nth-child(1) .featureCard { animation-delay: .05s; }
+.row > div:nth-child(2) .featureCard { animation-delay: .10s; }
+.row > div:nth-child(3) .featureCard { animation-delay: .15s; }
+.row > div:nth-child(4) .featureCard { animation-delay: .20s; }
+.row > div:nth-child(5) .featureCard { animation-delay: .25s; }
+.row > div:nth-child(6) .featureCard { animation-delay: .30s; }
+
+@keyframes feature-rise { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }

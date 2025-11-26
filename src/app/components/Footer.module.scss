@@ -1,0 +1,117 @@
+.footer {
+  // background: radial-gradient(120% 120% at 0% 0%, rgba(45,108,223,.15), transparent),
+  //             linear-gradient(180deg, #0b1020 0%, #0a0f1a 100%);
+  background-color: var(--brand-primary);
+  color: #dbe0ea;
+  padding: 56px 0 28px;
+}
+
+.brand {
+  max-width: 420px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 800;
+  color: #0a0f1a;
+  margin-bottom: 12px;
+}
+
+.about {
+  color: #b7bfd3;
+}
+
+.socials {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.15);
+  color: #dbe0ea;
+}
+
+.columnTitle {
+  font-size: 14px;
+  color: #9fb2d9;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links a {
+  color: #dbe0ea;
+  text-decoration: none;
+  opacity: .9;
+}
+
+.links a:hover {
+  opacity: 1;
+}
+
+.newsletter {
+  display: flex;
+  gap: 8px;
+}
+
+.newsletter input {
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
+  padding: 10px 12px;
+  color: #fff;
+}
+
+.newsletter button {
+  border-radius: 8px;
+  background: #cbea7b;
+  color: #1a3129;
+  font-weight: 600;
+  border: none;
+  padding: 10px 12px;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.18);
+}
+
+.newsletter button:hover { box-shadow: 0 8px 22px rgba(15,23,42,0.24); transform: translateY(-1px); }
+.newsletter button:active { transform: translateY(0); }
+
+.bottom {
+  margin-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 12px;
+  a {
+    color: #fff;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .newsletter { flex-direction: column; }
+  .bottom { flex-direction: column; align-items: flex-start; }
+}
