@@ -624,11 +624,7 @@ export default function DirectoryPage() {
                 <div className={styles.count}>{countLabel}</div>
                 {/* Details panel */}
                 {detailsLoading && (
-<<<<<<< HEAD
-                  <div className="alert alert-secondary" role="status" style={{borderRadius:12}}>Loading profile…</div>
-=======
                   <div className="alert alert-secondary" role="status" style={{borderRadius:12}}>{t.loadingProfile}</div>
->>>>>>> d6e849a (portal frontend updated translations and error message issues handled)
                 )}
                 {selectedProfile && (
                   <div className="card mb-3" style={{borderRadius:12}}>

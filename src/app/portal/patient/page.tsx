@@ -64,22 +64,14 @@ export default function PatientPortalPage() {
           const res2 = await fetch(`${apiBase}/purchases`, { headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${token}` } });
           const j2 = await res2.json().catch(() => ([]));
           if (!res2.ok) {
-<<<<<<< HEAD
-            setPurchErr(j2?.message || 'Failed to load coupons');
-=======
             setPurchErr(j2?.message || t.couponsLoadFailed);
->>>>>>> d6e849a (portal frontend updated translations and error message issues handled)
             setPurchases([]);
           } else {
             setPurchErr(null);
             setPurchases(Array.isArray(j2) ? j2 : []);
           }
         } catch (e: any) {
-<<<<<<< HEAD
-          setPurchErr(e?.message || 'Failed to load coupons');
-=======
           setPurchErr(e?.message || t.couponsLoadFailed);
->>>>>>> d6e849a (portal frontend updated translations and error message issues handled)
           setPurchases([]);
         }
       } catch {}
@@ -101,13 +93,9 @@ export default function PatientPortalPage() {
     profileTitle: string; profileSub: string;
     labelFullName: string; labelLanguages: string; labelPhone: string; labelCity: string; labelCountry: string; labelLat: string; labelLng: string;
     btnChangePhoto: string; btnUploadPhoto: string; btnUseLocation: string; btnSave: string; savingLabel: string; messagesLabel: string; profilePicLabel: string;
-<<<<<<< HEAD
-    couponsTitle: string; couponsEmpty: string; couponsViewAll: string; couponsCode: string; couponsStatus: string; couponsAvailable: string; couponsRedeemed: string;
-=======
     couponsTitle: string; couponsEmpty: string; couponsViewAll: string; couponsCode: string; couponsStatus: string; couponsAvailable: string; couponsRedeemed: string; couponsLoading: string; couponsLoadFailed: string;
     errNotAuthenticated: string; errUploadFailed: string; errUploadUrlMissing: string; errPhotoUploadFailed: string; errPhotoSelectFailed: string; errGeoUnsupported: string; errGeoFailed: string; errSaveFailed: string; errGenericFailed: string;
     noticePhotoUploaded: string; noticePhotoSelected: string; saved: string;
->>>>>>> d6e849a (portal frontend updated translations and error message issues handled)
   }>= {
     en: {
       h1: "Patient Portal",
