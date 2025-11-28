@@ -104,7 +104,7 @@ export default function PatientPortalPage() {
       sub: "Welcome back. Here's a quick overview.",
       heroTitle: "Stay on track with your wellness journey",
       heroSub: "Review your upcoming appointments, messages, and resources. Tip: keep your profile up to date for better recommendations.",
-      m1: "Upcoming appointments",
+      m1: "Profile complete",
       m2: "Unread messages",
       m3: "Saved resources",
       actions: {
@@ -137,7 +137,7 @@ export default function PatientPortalPage() {
       sub: "Willkommen zurück. Eine kurze Übersicht.",
       heroTitle: "Schritt für Schritt zu mehr Wohlbefinden – wir gehen den Weg mit dir",
       heroSub: "Überblick über Termine, Nachrichten und Ressourcen. Tipp: Profil aktuell halten für bessere Empfehlungen.",
-      m1: "Bevorstehende Termine",
+      m1: "Profil ausgefüllt",
       m2: "Ungelesene Nachrichten",
       m3: "Gespeicherte Ressourcen",
       actions: {
@@ -170,7 +170,7 @@ export default function PatientPortalPage() {
       sub: "Bon retour. Un aperçu rapide.",
       heroTitle: "Restez sur la bonne voie dans votre parcours santé",
       heroSub: "Consultez vos rendez‑vous, messages et ressources. Astuce : gardez votre profil à jour pour de meilleures recommandations.",
-      m1: "Rendez‑vous à venir",
+      m1: "Profil complété",
       m2: "Messages non lus",
       m3: "Ressources enregistrées",
       actions: {

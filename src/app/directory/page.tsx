@@ -135,10 +135,15 @@ export default function DirectoryPage() {
   };
 
   // Helper to load nearby profiles from backend (public endpoint)
-  const loadNearby = async (lat: number, lon: number, radius = 50) => {
+  const loadNearby = async (lat: number, lon: number, radius = 50, specialty?: string) => {
     try {
       setLoading(true);
-      const url = `${apiBase}/profiles/nearby?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&radius=${encodeURIComponent(radius)}`;
+      const params = new URLSearchParams();
+      params.set('lat', String(lat));
+      params.set('lon', String(lon));
+      if (radius != null) params.set('radius', String(radius));
+      if (specialty && specialty.trim()) params.set('specialty', specialty.trim());
+      const url = `${apiBase}/profiles/nearby?${params.toString()}`;
       const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
       if (!res.ok) throw new Error('Failed nearby');
       const arr = await res.json();
@@ -163,7 +168,7 @@ export default function DirectoryPage() {
   // Initial load: try user's current location, fallback to Switzerland center
   useEffect(() => {
     let done = false;
-    const fallback = () => { if (done) return; done = true; loadNearby(46.8182, 8.2275, 50); };
+    const fallback = () => { if (done) return; done = true; loadNearby(46.8182, 8.2275, 50, category || undefined); };
     try {
       if (typeof navigator !== 'undefined' && navigator.geolocation) {
         autoLocateOnceRef.current = true;
@@ -173,7 +178,7 @@ export default function DirectoryPage() {
           if (done) return; done = true;
           const { latitude, longitude } = pos.coords || {} as any;
           if (typeof latitude === 'number' && typeof longitude === 'number') {
-            loadNearby(latitude, longitude, 50);
+            loadNearby(latitude, longitude, 50, category || undefined);
             setMapTo(latitude, longitude, 10);
           } else {
             fallback();
@@ -203,15 +208,16 @@ export default function DirectoryPage() {
 
   const filtered = professionals.filter((p) => {
     const q = query.trim().toLowerCase();
-    const loc = location.trim().toLowerCase();
     const name = (p as any)?.name ? String((p as any).name) : "";
     const city = (p as any)?.city ? String((p as any).city) : "";
     const country = (p as any)?.country ? String((p as any).country) : "";
     const cat = (p as any)?.category ? String((p as any).category) : "";
-    const matchesLoc = loc ? (city.toLowerCase().includes(loc) || country.toLowerCase().includes(loc)) : true;
-    const matchesText = !q || [name, city, country].some(v => v.toLowerCase().includes(q));
-    const matchesCat = !category || cat === category;
-    return matchesLoc && matchesText && matchesCat;
+    const fields = [name, city, country].map(v => v.toLowerCase());
+    const matchesText = !q || fields.some(v => v.includes(q) || q.includes(v));
+    const matchesCat = !category
+      || !cat
+      || cat.toLowerCase().includes(category.toLowerCase());
+    return matchesText && matchesCat;
   });
 
   const countLabel = filtered.length === 0 ? t.count0 : (t.countN || t.count0).replace("{n}", String(filtered.length));
@@ -431,14 +437,14 @@ export default function DirectoryPage() {
         userMarkerRef.current = new g.maps.Marker({ position: { lat, lng }, map, title: 'You are here' });
         if (map.setCenter && map.setZoom) { map.setCenter({ lat, lng }); map.setZoom(12); }
         // Load nearby for this position
-        loadNearby(lat, lng, 50);
+        loadNearby(lat, lng, 50, category || undefined);
       } else {
         const L = (window as any).L; if (!L) return;
         if (userMarkerRef.current) { try { userMarkerRef.current.remove(); } catch {} }
         userMarkerRef.current = L.marker([lat, lng]).addTo(map);
         if (typeof map.setView === 'function') { map.setView([lat, lng], 12); }
         // Load nearby for this position
-        loadNearby(lat, lng, 50);
+        loadNearby(lat, lng, 50, category || undefined);
       }
     }, (err) => {
       // silently ignore or log

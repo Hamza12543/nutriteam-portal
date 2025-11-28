@@ -2,9 +2,14 @@
 import styles from "./Footer.module.scss";
 import { useLanguage } from "../providers/LanguageProvider";
 import Logo from '../assets/images/omnicheck-logo-mob.png'
+import { useState } from "react";
 
 export default function Footer() {
   const { lang } = useLanguage();
+  const apiBase = (process.env.NEXT_PUBLIC_API_BASE || "https://gdp.codefest.io/app7").replace(/\/$/, "");
+  const [email, setEmail] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const copy: Record<string, {
     aboutTitle: string;
@@ -14,6 +19,9 @@ export default function Footer() {
     newsletterTitle: string;
     newsletterPlaceholder: string;
     subscribe: string;
+    newsletterOk: string;
+    newsletterError: string;
+    newsletterLogin: string;
     rights: string;
     linkHome: string;
     linkAbout: string;
@@ -33,6 +41,9 @@ export default function Footer() {
       newsletterTitle: "Stay in the loop",
       newsletterPlaceholder: "Your email address",
       subscribe: "Subscribe",
+      newsletterOk: "Subscription updated.",
+      newsletterError: "Could not update subscription.",
+      newsletterLogin: "Please log in to subscribe.",
       rights: "All rights reserved.",
       linkHome: "Home",
       linkAbout: "About",
@@ -52,6 +63,9 @@ export default function Footer() {
       newsletterTitle: "Bleiben Sie informiert",
       newsletterPlaceholder: "Ihre E‑Mail‑Adresse",
       subscribe: "Abonnieren",
+      newsletterOk: "Newsletter-Abonnement aktualisiert.",
+      newsletterError: "Abonnement konnte nicht aktualisiert werden.",
+      newsletterLogin: "Bitte melde dich an, um den Newsletter zu abonnieren.",
       rights: "Alle Rechte vorbehalten.",
       linkHome: "Startseite",
       linkAbout: "Über uns",
@@ -71,6 +85,9 @@ export default function Footer() {
       newsletterTitle: "Restez informé",
       newsletterPlaceholder: "Votre adresse e‑mail",
       subscribe: "S'abonner",
+      newsletterOk: "Abonnement mis à jour.",
+      newsletterError: "Impossible de mettre à jour l’abonnement.",
+      newsletterLogin: "Connectez-vous pour vous abonner à la newsletter.",
       rights: "Tous droits réservés.",
       linkHome: "Accueil",
       linkAbout: "À propos",
@@ -85,6 +102,42 @@ export default function Footer() {
   };
 
   const t = copy[lang] ?? copy.en;
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage(null);
+    if (!email.trim()) return;
+    try {
+      setSaving(true);
+      const token = (() => {
+        try { const t = localStorage.getItem('auth_token'); if (t) return t; } catch {}
+        try { const m = document.cookie.match(/(?:^|; )auth_token=([^;]+)/); return m ? decodeURIComponent(m[1]) : null; } catch {}
+        return null;
+      })();
+      if (!token) {
+        setMessage(t.newsletterLogin);
+        return;
+      }
+      const res = await fetch(`${apiBase}/users/subscription`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ newsletterSubscribed: true, email }),
+      });
+      if (!res.ok) {
+        setMessage(t.newsletterError);
+        return;
+      }
+      setMessage(t.newsletterOk);
+    } catch {
+      setMessage(t.newsletterError);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const year = new Date().getFullYear();
 
@@ -132,10 +185,17 @@ export default function Footer() {
 
           <div className="col-lg-4">
             <h4 className={styles.columnTitle}>{t.newsletterTitle}</h4>
-            <form className={styles.newsletter} onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder={t.newsletterPlaceholder} aria-label={t.newsletterPlaceholder} />
-              <button type="submit">{t.subscribe}</button>
+            <form className={styles.newsletter} onSubmit={handleNewsletterSubmit}>
+              <input
+                type="email"
+                placeholder={t.newsletterPlaceholder}
+                aria-label={t.newsletterPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button type="submit" disabled={saving}>{saving ? "..." : t.subscribe}</button>
             </form>
+            {message && <div className="mt-2 small text-muted">{message}</div>}
           </div>
         </div>
 
