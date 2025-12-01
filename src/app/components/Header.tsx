@@ -13,7 +13,8 @@ export default function Header() {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
   const [fullName, setFullName] = useState<string>("");
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // user dropdown
+  const [navOpen, setNavOpen] = useState(false);   // mobile navbar
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -101,12 +102,19 @@ export default function Header() {
          {/* <p style={{marginBottom: 0, color: "#00a5bf", fontWeight: 600, marginLeft: "10px", fontSize: "20px"}}>OmniCheck AI</p> */}
         </Link>
 
-        {/* Collapsible menu placeholder (requires Bootstrap JS + jQuery/Popper if you want it functional) */}
-        {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button> */}
+        {/* Hamburger toggler for mobile/tablet */}
+        <button
+          className="navbar-toggler ms-auto"
+          type="button"
+          aria-controls="mainNav"
+          aria-expanded={navOpen}
+          aria-label="Toggle navigation"
+          onClick={() => setNavOpen((v) => !v)}
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
 
-        <div className="collapse navbar-collapse" id="mainNav">
+        <div className={`navbar-collapse ${navOpen ? "show" : "collapse"}`} id="mainNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item"><Link className={`nav-link ${pathname === '/' ? styles.active : ''}`} href="/">{t.home}</Link></li>
             <li className="nav-item"><Link className={`nav-link ${pathname?.startsWith('/directory') ? styles.active : ''}`} href="/directory">{t.directory}</Link></li>
@@ -118,6 +126,7 @@ export default function Header() {
             )}
             
           </ul>
+          {/* Desktop actions */}
           <div className="d-none d-lg-flex align-items-center gap-2">
             <a className={`${styles.haBtn}`} href="https://ki.nutriteam.ch/?utm_source=nutriteam-network&utm_medium=nav&utm_campaign=ai-health" target="_blank" rel="noopener noreferrer">{t.ai}</a>
             {loggedIn ? (
@@ -159,6 +168,61 @@ export default function Header() {
               value={lang}
               onChange={(e) => setLang(e.target.value as any)}
               style={{ width: 70 }}
+            >
+              <option value="de">DE</option>
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+            </select>
+          </div>
+
+          {/* Mobile / tablet actions below nav links */}
+          <div className="d-flex d-lg-none flex-column gap-2 mt-3">
+            <a className={`${styles.haBtn}`} href="https://ki.nutriteam.ch/?utm_source=nutriteam-network&utm_medium=nav&utm_campaign=ai-health" target="_blank" rel="noopener noreferrer">{t.ai}</a>
+            {loggedIn ? (
+              <div className="position-relative" ref={menuRef}>
+                <button
+                  type="button"
+                  onClick={()=>setMenuOpen((v)=>!v)}
+                  className="btn btn-link p-0 d-flex align-items-center text-decoration-none"
+                  aria-haspopup="menu"
+                  aria-expanded={menuOpen}
+                  style={{ color: '#fff' }}
+                >
+                  <span
+                    aria-hidden
+                    className="d-inline-flex align-items-center justify-content-center"
+                    style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid #e5e7eb', background: '#f8fafc', color: '#334155', fontWeight: 700 }}
+                  >
+                    {(fullName || 'U').slice(0,1)}
+                  </span>
+                  <span className="ms-2 fw-semibold" style={{ whiteSpace: 'nowrap', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis' }}>{fullName || ''}</span>
+                  <svg className="ms-1" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {menuOpen && (
+                  <div role="menu" className={`${styles.userMenu} shadow-sm`}>
+                    <button role="menuitem" className={styles.userMenuItem} onClick={()=>{ setMenuOpen(false); goToDashboard(); }}>
+                      {t.dashboard}
+                    </button>
+                    <div className={styles.userMenuDivider} />
+                    <button role="menuitem" className={styles.userMenuItem} style={{ color: '#fca5a5' }} onClick={()=>{ setMenuOpen(false); logout(); }}>
+                      {t.logout}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link href="/login" className={styles.navBtn}>
+                <span>{t.login}</span>
+              </Link>
+            )}
+            <select
+              className="form-select form-select-sm mt-1"
+              aria-label={t.langLabel}
+              value={lang}
+              onChange={(e) => setLang(e.target.value as any)}
+              style={{ maxWidth: 120 }}
             >
               <option value="de">DE</option>
               <option value="en">EN</option>

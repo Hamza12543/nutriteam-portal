@@ -72,6 +72,7 @@
 .actions {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 12px;
   align-items: center;
   opacity: 0;
