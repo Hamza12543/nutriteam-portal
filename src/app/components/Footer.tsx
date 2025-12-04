@@ -154,7 +154,6 @@ export default function Footer() {
           <div className="col-lg-4">
             <div className={styles.brand}>
               <div className={styles.logo} aria-hidden="true"><img className="img-fluid" style={{maxWidth: "150px"}} src={Logo.src} alt="OmniCheck AI" /></div>
-              {/* <p style={{marginBottom: 0, color: "#00a5bf", fontWeight: 600, marginTop: 8, fontSize: "18px"}}>OmniCheck AI</p> */}
               <p className={styles.about}>{t.aboutText}</p>
               <div className={styles.socials}>
                 <a aria-label="X" href="#" className={styles.social}>
